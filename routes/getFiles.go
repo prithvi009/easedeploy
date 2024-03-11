@@ -32,6 +32,12 @@ func addFiles(c *gin.Context) {
 		return
 	}
 
+	err = utils.AddDockerfiles(folderName)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Files added successfully",
 		"repoUrl": repoUrl,
