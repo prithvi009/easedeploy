@@ -2,8 +2,10 @@ package router
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/prithvi009/easedeploy/utils"
 )
 
 func addFiles(c *gin.Context) {
@@ -20,6 +22,15 @@ func addFiles(c *gin.Context) {
 
 	// Extract repoUrl from the bound struct
 	repoUrl := jsonData.RepoURL
+
+	repoName := strings.Split(repoUrl, "/")[4]
+	folderName := utils.GenerateUniqueFileName(repoName)
+
+	err := utils.CloneRepository(repoUrl, folderName)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Files added successfully",
