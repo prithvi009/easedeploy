@@ -18,7 +18,7 @@ func main() {
 	bucketName := "deployease"
 
 	// List local files to upload
-	files := []string{"file2.txt"}
+	files := []string{"file3.txt"}
 
 	for _, file := range files {
 		// Open the local file
