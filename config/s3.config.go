@@ -17,7 +17,6 @@ func S3Instance() *s3.Client {
 		log.Fatal(err)
 	}
 
-	// Create an Amazon S3 service client
 	client := s3.NewFromConfig(cfg)
 
 	return client
