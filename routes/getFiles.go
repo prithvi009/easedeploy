@@ -58,7 +58,8 @@ func addFiles(c *gin.Context) {
 	})
 }
 
-// SetupRouter sets up the router
+// sets up the router
+
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
 	router.POST("/files", addFiles)
